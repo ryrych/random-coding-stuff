@@ -6,10 +6,26 @@ describe("filterByPrimeFrequency", () => {
     expect(filterByPrimeFrequency).toBeTypeOf("function");
   });
 
+  test("it returns `null` if `A` or `A` are not arrays of numbers", () => {
+    expect(filterByPrimeFrequency([], [])).toBeNull();
+    expect(filterByPrimeFrequency([], [1])).toBeNull();
+    expect(filterByPrimeFrequency([1], [])).toBeNull();
+    // @ts-expect-error — invalid input test
+    expect(filterByPrimeFrequency(["a"], [])).toBeNull();
+    // @ts-expect-error — invalid input test
+    expect(filterByPrimeFrequency([], ["a"])).toBeNull();
+    // @ts-expect-error — invalid input test
+    expect(filterByPrimeFrequency([1, 2], ["a"])).toBeNull();
+    // @ts-expect-error — invalid input test
+    expect(filterByPrimeFrequency(undefined, null)).toBeNull();
+    // @ts-expect-error — invalid input test
+    expect(filterByPrimeFrequency(1, true)).toBeNull();
+  });
+
   test("it returns sequence of integers", () => {
     const results = filterByPrimeFrequency([1, 3, 5], [4, 3]);
 
-    expect(results.every(Number.isInteger)).toBe(true);
+    expect(results?.every(Number.isInteger)).toBe(true);
   });
 
   [

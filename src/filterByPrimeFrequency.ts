@@ -3,11 +3,22 @@ import { isPrime } from "./isPrime";
 
 const primesFromSet = new Set();
 
-function filterByPrimeFrequency(a: number[], b: number[]): number[] {
+function filterByPrimeFrequency(a: number[], b: number[]): number[] | null {
   const aMap = new Map();
   const res: number[] = [];
 
-  (a ?? []).forEach((n: number) => {
+  if (!(Array.isArray(a) && Array.isArray(b) && a.length > 0 && b.length > 0)) {
+    return null;
+  }
+
+  if (
+    a.some((v) => !Number.isInteger(v)) ||
+    b.some((v) => !Number.isInteger(v))
+  ) {
+    return null;
+  }
+
+  a.forEach((n: number) => {
     if (!aMap.has(n)) {
       const count = inSetCount(n, b ?? []);
 
@@ -34,7 +45,7 @@ function filterByPrimeFrequency(a: number[], b: number[]): number[] {
     }
   });
 
-  return res as number[];
+  return res;
 }
 
 export { filterByPrimeFrequency };

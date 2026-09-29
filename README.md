@@ -38,6 +38,7 @@ Taking aside a fact that this kind of algorithm is rather artificial, if that co
 
 - Find a performant function for checking if a number is prime (for example with AI assistance help)
 - Definitely checked how long can `A` or `B` be
+- Ensure input is valid (I skipped that part, yet I definitely shouldn't)
 
 ## How to run
 
